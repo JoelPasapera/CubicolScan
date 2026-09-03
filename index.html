@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Registro a Excel</title>
+  <link rel="stylesheet" href="estilos/base.css">
+  <link rel="stylesheet" href="estilos/interfaz.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="barra__marca">
+      <span class="barra__logo" aria-hidden="true"></span>
+      <h1>Registro a Excel</h1>
+    </div>
+    <button type="button" class="boton boton--secundario" id="boton-ajustes">Ajustes</button>
+  </header>
+
+  <main>
+    <div id="avisos" class="avisos" aria-live="polite"></div>
+
+    <section id="seccion-carga" class="panel">
+      <h2>Fotos del registro</h2>
+      <p class="ayuda">Sube todas las hojas de un mismo registro. Si tiene dos hojas, sube las dos: se unen solas por el número de cada alumno.</p>
+
+      <div id="zona-carga" class="zona-carga">
+        <p class="zona-carga__texto">Arrastra aquí las fotos, o</p>
+        <div class="acciones">
+          <button type="button" class="boton boton--principal" id="boton-elegir">Elegir fotos</button>
+          <button type="button" class="boton boton--secundario" id="boton-camara">Sacar una foto</button>
+        </div>
+        <input type="file" id="entrada-archivos" accept="image/*" multiple hidden>
+        <input type="file" id="entrada-camara" accept="image/*" capture="environment" hidden>
+      </div>
+
+      <ul id="lista-hojas" class="hojas" aria-label="Hojas subidas"></ul>
+
+      <div class="acciones acciones--fin">
+        <button type="button" class="boton boton--principal boton--grande" id="boton-leer" disabled>Leer registro</button>
+      </div>
+    </section>
+
+    <section id="seccion-progreso" class="panel" hidden>
+      <h2>Leyendo el registro</h2>
+      <p id="texto-progreso" class="ayuda"></p>
+      <div class="progreso" role="progressbar" aria-label="Progreso de la lectura">
+        <div id="barra-progreso" class="progreso__barra"></div>
+      </div>
+      <p class="ayuda">Cada hoja tarda entre medio minuto y dos minutos. Puedes seguir con otra cosa; la pestaña tiene que quedar abierta.</p>
+      <div class="acciones">
+        <button type="button" class="boton boton--secundario" id="boton-cancelar-lectura">Cancelar</button>
+      </div>
+    </section>
+
+    <section id="seccion-revision" class="panel" hidden>
+      <h2>Revisión</h2>
+      <p class="ayuda">Las casillas en amarillo tienen alguna duda. Corrígelas escribiendo encima, o confírmalas con Intro. Pulsa en cualquier fila y la foto de su hoja aparece al lado.</p>
+
+      <div id="cabecera" class="cabecera"></div>
+      <div id="resumen" class="resumen"></div>
+
+      <div class="revision">
+        <div class="revision__tabla" id="contenedor-tabla"></div>
+        <aside class="revision__foto" id="panel-foto" aria-label="Foto de la hoja"></aside>
+      </div>
+
+      <div class="acciones acciones--fin">
+        <button type="button" class="boton boton--secundario" id="boton-volver">Volver a las fotos</button>
+        <button type="button" class="boton boton--principal boton--grande" id="boton-descargar">Descargar Excel</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="dialogo-ajustes" class="dialogo" aria-labelledby="ajustes-titulo">
+    <h2 id="ajustes-titulo">Clave del servicio de lectura</h2>
+    <p id="ajustes-motivo" class="ayuda" hidden></p>
+    <p id="ajustes-estado" class="ayuda"></p>
+    <label class="campo">
+      <span>Clave</span>
+      <span class="campo__con-boton">
+        <input type="password" id="ajustes-clave" autocomplete="off" spellcheck="false">
+        <button type="button" class="boton boton--secundario boton--pequeno" id="ajustes-ver">Mostrar</button>
+      </span>
+    </label>
+    <p id="ajustes-mensaje" class="mensaje" aria-live="polite"></p>
+    <p class="ayuda">La clave se guarda solo en este navegador. No sale de aquí más que para leer tus fotos.</p>
+    <div class="acciones acciones--fin">
+      <button type="button" class="boton boton--secundario" id="ajustes-borrar" hidden>Borrar clave</button>
+      <button type="button" class="boton boton--secundario" id="ajustes-cancelar">Cancelar</button>
+      <button type="button" class="boton boton--principal" id="ajustes-guardar">Guardar</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

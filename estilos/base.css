@@ -1,0 +1,227 @@
+/* Base: colores, tipografía y piezas comunes. Los colores salen del papel:
+   la franja celeste de la cuadrícula y la tinta azul y roja del bolígrafo. */
+
+:root {
+  --fondo: #eef2f5;
+  --papel: #ffffff;
+  --tinta: #1b2430;
+  --tinta-suave: #5b6673;
+  --tinta-clara: #8a94a0;
+  --linea: #c9d3db;
+  --linea-fuerte: #9aa8b5;
+  --franja: #cdedf2;
+  --franja-fuerte: #9fdae3;
+  --azul: #1f3f9e;
+  --azul-oscuro: #172f75;
+  --rojo: #b8322a;
+  --duda-fondo: #fff1c2;
+  --duda-borde: #e0a100;
+  --duda-texto: #6b4a00;
+  --ok: #1d7a46;
+  --ok-fondo: #e3f5ea;
+  --error-fondo: #fde8e6;
+  --error-texto: #8a1c14;
+  --aviso-fondo: #fff6dc;
+  --aviso-texto: #5f4300;
+  --radio: 8px;
+  --sombra: 0 1px 2px rgba(27, 36, 48, 0.08);
+  --fuente: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--fuente);
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--tinta);
+  background: var(--fondo);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 1.1rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+
+p {
+  margin: 0;
+}
+
+.ayuda {
+  color: var(--tinta-suave);
+  font-size: 0.95rem;
+  max-width: 70ch;
+}
+
+.mensaje {
+  color: var(--error-texto);
+  font-size: 0.95rem;
+  min-height: 1.4em;
+}
+
+/* Botones */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+  color: var(--tinta);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.boton:hover:not(:disabled) {
+  background: #f4f7f9;
+}
+
+.boton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.boton--principal {
+  background: var(--azul);
+  border-color: var(--azul);
+  color: #fff;
+}
+
+.boton--principal:hover:not(:disabled) {
+  background: var(--azul-oscuro);
+}
+
+.boton--secundario {
+  background: var(--papel);
+}
+
+.boton--grande {
+  min-height: 2.9rem;
+  padding-inline: 1.4rem;
+  font-size: 1.05rem;
+}
+
+.boton--pequeno {
+  min-height: 2rem;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+.boton--icono {
+  min-height: 2rem;
+  min-width: 2rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Campos */
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.campo > span:first-child {
+  color: var(--tinta-suave);
+}
+
+.campo input {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+  color: var(--tinta);
+  min-width: 0;
+}
+
+.campo__con-boton {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.campo__con-boton input {
+  flex: 1;
+}
+
+/* Foco visible en todo */
+
+:focus-visible {
+  outline: 3px solid var(--franja-fuerte);
+  outline-offset: 1px;
+}
+
+input:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 0;
+}
+
+/* Contenedores */
+
+.panel {
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.acciones--fin {
+  justify-content: flex-end;
+  padding-top: 0.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
